@@ -5,11 +5,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
+
 public abstract class Dishwasher {
     private String model;
     private int maxCapacity;
     private int currentCapacity;
     private boolean isOn;
+
 
     public Dishwasher(String model, int maxCapacity) {
         this.model = model;
@@ -18,7 +20,9 @@ public abstract class Dishwasher {
         this.isOn = false;
     }
 
+
     public abstract double getPowerConsumptionPerCycle();
+
 
     public void turnOn() {
         this.isOn = true;
@@ -54,4 +58,5 @@ public abstract class Dishwasher {
             System.out.println("The dishwasher is already empty.");
         }
     }
+
 }
