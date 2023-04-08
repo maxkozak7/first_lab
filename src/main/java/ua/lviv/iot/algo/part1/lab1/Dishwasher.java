@@ -5,21 +5,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Dishwasher {
+
+public abstract class Dishwasher {
     private String model;
-    private static final int MAX_CAPACITY = 15;
-    private int maxCapacity = MAX_CAPACITY;;
+    private int maxCapacity;
     private int currentCapacity;
     private boolean isOn;
 
-    private static Dishwasher instance;
-
-    public static Dishwasher getInstance() {
-        if (instance == null) {
-            instance = new Dishwasher("Concept", MAX_CAPACITY);
-        }
-        return instance;
-    }
 
     public Dishwasher(String model, int maxCapacity) {
         this.model = model;
@@ -27,6 +19,10 @@ public class Dishwasher {
         this.currentCapacity = 0;
         this.isOn = false;
     }
+
+
+    public abstract double getPowerConsumptionPerCycle();
+
 
     public void turnOn() {
         this.isOn = true;
@@ -63,17 +59,4 @@ public class Dishwasher {
         }
     }
 
-
-    public static void main(String[] args) {
-        Dishwasher dishwasher1 = new Dishwasher();
-        Dishwasher dishwasher2 = new Dishwasher("Bosch", 10);
-        Dishwasher dishwasher3 = Dishwasher.getInstance();
-        Dishwasher dishwasher4 = Dishwasher.getInstance();
-
-        Dishwasher[] dishwashers = { dishwasher1, dishwasher2, dishwasher3, dishwasher4 };
-
-        for (Dishwasher dishwasher : dishwashers) {
-            System.out.println(dishwasher.toString() + " - " + dishwasher.hashCode());
-        }
-    }
 }
